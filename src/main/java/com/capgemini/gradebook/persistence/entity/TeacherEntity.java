@@ -1,5 +1,7 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -15,8 +17,8 @@ public class TeacherEntity extends AbstractEntity {
 
   //TODO IMPLEMENT: after creating subjectEntity and other subject classes uncomment the lines below, making necessary
   // adjustments; then generate getters and setters and fix the mappers
-//  @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.LAZY)
-//  private List<SubjectEntity> subjectEntityList;
+  @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.LAZY)
+  private List<SubjectEntity> subjectEntityList;
 
 
   //TODO IMPLEMENT: create @OneToMany with mappedBy to subjects after you create a base model
