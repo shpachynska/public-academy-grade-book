@@ -14,14 +14,29 @@ public class TeacherEntity extends AbstractEntity {
   private String firstName;
   private String lastName;
 
-
-  //TODO IMPLEMENT: after creating subjectEntity and other subject classes uncomment the lines below, making necessary
+   //TODO IMPLEMENT: after creating subjectEntity and other subject classes uncomment the lines below, making necessary
   // adjustments; then generate getters and setters and fix the mappers
   @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.LAZY)
   private List<SubjectEntity> subjectEntityList;
 
 
   //TODO IMPLEMENT: create @OneToMany with mappedBy to subjects after you create a base model
+
+  /**
+   * @return subjectEntityList
+   */
+  public List<SubjectEntity> getSubjectEntityList() {
+
+    return this.subjectEntityList;
+  }
+
+  /**
+   * @param subjectEntityList the new value.
+   */
+  public void setSubjectEntityList(List<SubjectEntity> subjectEntityList) {
+
+    this.subjectEntityList = subjectEntityList;
+  }
 
   public String getFirstName() {
 
