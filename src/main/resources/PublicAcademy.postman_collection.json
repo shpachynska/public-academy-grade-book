@@ -43,6 +43,43 @@
 			"response": []
 		},
 		{
+			"name": "newClass",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"classLevel\": 4,\r\n    \"className\": \"a\",\n    \"classYear\": \"as\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8091/rest/classes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"classes"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "updateTeacher",
 			"request": {
 				"method": "PUT",
@@ -74,6 +111,37 @@
 			"response": []
 		},
 		{
+			"name": "updateClass",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"classLevel\": 4,\n    \"className\": \"a\",\n    \"classYear\": \"as\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8091/rest/classes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"classes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getAllTeachers",
 			"request": {
 				"method": "GET",
@@ -94,6 +162,32 @@
 					"path": [
 						"rest",
 						"teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllClasses",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/classes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"classes"
 					]
 				}
 			},
@@ -133,6 +227,39 @@
 			"response": []
 		},
 		{
+			"name": "getClassById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/classes/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"classes",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "deleteTeacherById",
 			"request": {
 				"method": "DELETE",
@@ -153,6 +280,39 @@
 					"path": [
 						"rest",
 						"teachers",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteClassById",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/classes/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"classes",
 						":id"
 					],
 					"variable": [
