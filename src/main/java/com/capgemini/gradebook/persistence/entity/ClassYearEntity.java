@@ -1,15 +1,40 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLASS")
-public class ClassEntity extends AbstractEntity {
+@Table(name = "CLASS_YEAR")
+public class ClassYearEntity extends AbstractEntity {
+
+ @OneToMany(mappedBy = "classYearEntity")
+  private List<StudentEntity> studentEntities;
 
   private Number classLevel;
   private String className;
   private String classYear;
+
+  /**
+   * @return students
+   */
+  public List<StudentEntity> getStudents() {
+
+    return this.studentEntities;
+  }
+
+  /**
+   * @param studentEntities the new value.
+   */
+  public void setStudents(List<StudentEntity> studentEntities) {
+
+    this.studentEntities = studentEntities;
+  }
 
   /**
    * @return classLevel

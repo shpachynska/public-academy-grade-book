@@ -1,38 +1,42 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "STUDENT")
 public class StudentEntity extends AbstractEntity {
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ClassEntity classEntity;
-
   private String lastName;
   private String firstName;
   private Integer age;
 
-  /**
-   * @return classEntity
-   */
-  public ClassEntity getClassEntity() {
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "ClassYearId")
+  private ClassYearEntity classYearEntity;
 
-    return this.classEntity;
+   /**
+   * @return classYearEntity
+   */
+  public ClassYearEntity getClassYearEntity() {
+
+    return this.classYearEntity;
   }
 
   /**
-   * @param classEntity the new value.
+   * @param classYearEntity the new value.
    */
-  public void setClassEntity(ClassEntity classEntity) {
+  public void setClassYearEntity(ClassYearEntity classYearEntity) {
 
-    this.classEntity = classEntity;
+    this.classYearEntity = classYearEntity;
   }
 
-  /**
+   /**
    * @return lastName
    */
   public String getLastName() {

@@ -3,7 +3,7 @@ package com.capgemini.gradebook.domain;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import com.capgemini.gradebook.persistence.entity.ClassEntity;
+import com.capgemini.gradebook.persistence.entity.ClassYearEntity;
 import com.capgemini.gradebook.persistence.entity.SubjectType;
 import com.capgemini.gradebook.persistence.entity.TeacherEntity;
 
@@ -15,7 +15,7 @@ public class SubjectEto extends AbstractEto {
 
   private TeacherEntity teacherEntity;
 
-  private ClassEntity classEntity;
+  private ClassYearEntity classYearEntity;
 
   /**
    * @return name
@@ -66,18 +66,18 @@ public class SubjectEto extends AbstractEto {
   }
 
   /**
-   * @return classEntity
+   * @return classYearEntity
    */
-  public ClassEntity getClassEntity() {
+  public ClassYearEntity getClassYearEntity() {
 
-    return this.classEntity;
+    return this.classYearEntity;
   }
 
   /**
-   * @param classEntity the new value.
+   * @param classYearEntity the new value.
    */
-  public void setClassEntity(ClassEntity classEntity) {
+  public void setClassYearEntity(ClassYearEntity classYearEntity) {
 
-    this.classEntity = classEntity;
+    this.classYearEntity = classYearEntity;
   }
 }

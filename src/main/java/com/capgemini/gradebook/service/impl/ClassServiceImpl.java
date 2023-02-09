@@ -11,7 +11,7 @@ import com.capgemini.gradebook.domain.ClassEto;
 import com.capgemini.gradebook.domain.TeacherEto;
 import com.capgemini.gradebook.domain.mapper.ClassMapper;
 import com.capgemini.gradebook.domain.mapper.TeacherMapper;
-import com.capgemini.gradebook.persistence.entity.ClassEntity;
+import com.capgemini.gradebook.persistence.entity.ClassYearEntity;
 import com.capgemini.gradebook.persistence.entity.TeacherEntity;
 import com.capgemini.gradebook.persistence.repo.ClassRepo;
 import com.capgemini.gradebook.service.ClassService;
@@ -37,15 +37,15 @@ public class ClassServiceImpl implements ClassService {
   @Override
   public ClassEto save(ClassEto newClass) {
 
-    ClassEntity classEntity = ClassMapper.mapToEntity(newClass);
-    classEntity = this.classRepository.save(classEntity);
-    return ClassMapper.mapToETO(classEntity);
+    ClassYearEntity classYearEntity = ClassMapper.mapToEntity(newClass);
+    classYearEntity = this.classRepository.save(classYearEntity);
+    return ClassMapper.mapToETO(classYearEntity);
   }
 
   @Override
   public ClassEto findClassById(Long id) {
 
-    final Optional<ClassEntity> result = this.classRepository.findById(id);
+    final Optional<ClassYearEntity> result = this.classRepository.findById(id);
     return result.map(r -> ClassMapper.mapToETO(r)).orElseThrow( ()-> new RuntimeException("Class not found " +
         "exception"));
   }

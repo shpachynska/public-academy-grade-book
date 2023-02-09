@@ -1,27 +1,29 @@
 package com.capgemini.gradebook.domain;
 
-import com.capgemini.gradebook.persistence.entity.ClassEntity;
+import java.util.List;
 
 public class StudentEto extends AbstractEto {
-  private ClassEntity classEntity;
   private String lastName;
   private String firstName;
   private Integer age;
 
-  /**
-   * @return classEntity
-   */
-  public ClassEntity getClassEntity() {
+  private Long classYearId;
+//  private List<Long> subjectList;
 
-    return this.classEntity;
+  /**
+   * @return classGroupId
+   */
+  public Long getClassYearId() {
+
+    return this.classYearId;
   }
 
   /**
-   * @param classEntity the new value.
+   * @param classYearId the new value.
    */
-  public void setClassEntity(ClassEntity classEntity) {
+  public void setClassYearId(Long classYearId) {
 
-    this.classEntity = classEntity;
+    this.classYearId = classYearId;
   }
 
   /**

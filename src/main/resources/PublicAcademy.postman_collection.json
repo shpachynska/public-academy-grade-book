@@ -43,6 +43,43 @@
 			"response": []
 		},
 		{
+			"name": "newStudent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"firstName\": \"Peter\",\r\n    \"lastName\": \"Parker\",\r\n    \"age\": 15,\r\n    \"classYearId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8091/rest/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"students"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "newClass",
 			"request": {
 				"method": "POST",
@@ -55,7 +92,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \r\n    \"classLevel\": 4,\r\n    \"className\": \"a\",\n    \"classYear\": \"as\"\r\n}"
+					"raw": "{\r\n    \r\n    \"classLevel\": 4,\r\n    \"className\": \"a\",\r\n    \"classYear\": \"as\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/classes",
@@ -104,6 +141,37 @@
 					"path": [
 						"rest",
 						"teachers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStudent",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"firstName\": \"Peter\",\r\n    \"LastName\": \"Parker\",\r\n    \"age\": 15,\r\n    \"class_year\": \"5b\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8091/rest/students/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"students",
 						"1"
 					]
 				}
@@ -168,6 +236,32 @@
 			"response": []
 		},
 		{
+			"name": "getAllStudents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getAllClasses",
 			"request": {
 				"method": "GET",
@@ -214,6 +308,39 @@
 					"path": [
 						"rest",
 						"teachers",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStudentById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/students/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"students",
 						":id"
 					],
 					"variable": [
@@ -280,6 +407,39 @@
 					"path": [
 						"rest",
 						"teachers",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteStudentById",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8091/rest/students/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"rest",
+						"students",
 						":id"
 					],
 					"variable": [

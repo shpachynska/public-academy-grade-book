@@ -26,7 +26,7 @@ public class SubjectEntity extends AbstractEntity {
   private TeacherEntity teacherEntity;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private ClassEntity classEntity;
+  private ClassYearEntity classYearEntity;
 
   /**
    * @return name
@@ -77,18 +77,18 @@ public class SubjectEntity extends AbstractEntity {
   }
 
   /**
-   * @return classEntity
+   * @return classYearEntity
    */
-  public ClassEntity getClassEntity() {
+  public ClassYearEntity getClassYearEntity() {
 
-    return this.classEntity;
+    return this.classYearEntity;
   }
 
   /**
-   * @param classEntity the new value.
+   * @param classYearEntity the new value.
    */
-  public void setClassEntity(ClassEntity classEntity) {
+  public void setClassYearEntity(ClassYearEntity classYearEntity) {
 
-    this.classEntity = classEntity;
+    this.classYearEntity = classYearEntity;
   }
 }
