@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "STUDENT")
@@ -18,6 +19,7 @@ public class StudentEntity extends AbstractEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "ClassYearId")
+  @NotNull
   private ClassYearEntity classYearEntity;
 
    /**

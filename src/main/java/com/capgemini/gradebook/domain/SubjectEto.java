@@ -9,15 +9,14 @@ import com.capgemini.gradebook.persistence.entity.TeacherEntity;
 
 public class SubjectEto extends AbstractEto {
   private String name;
+  private Long teacherId;
+  private Long classYearId;
 
   @Enumerated(EnumType.STRING)
   private SubjectType subjectType;
 
-  private TeacherEntity teacherEntity;
 
-  private ClassYearEntity classYearEntity;
-
-  /**
+   /**
    * @return name
    */
   public String getName() {
@@ -50,34 +49,34 @@ public class SubjectEto extends AbstractEto {
   }
 
   /**
-   * @return teacherEntity
+   * @return teacherId
    */
-  public TeacherEntity getTeacherEntity() {
+  public Long getTeacherId() {
 
-    return this.teacherEntity;
+    return this.teacherId;
   }
 
   /**
-   * @param teacherEntity the new value.
+   * @param teacherId the new value.
    */
-  public void setTeacherEntity(TeacherEntity teacherEntity) {
+  public void setTeacherId(Long teacherId) {
 
-    this.teacherEntity = teacherEntity;
+    this.teacherId = teacherId;
   }
 
   /**
-   * @return classYearEntity
+   * @return classYearId
    */
-  public ClassYearEntity getClassYearEntity() {
+  public Long getClassYearId() {
 
-    return this.classYearEntity;
+    return this.classYearId;
   }
 
   /**
-   * @param classYearEntity the new value.
+   * @param classYearId the new value.
    */
-  public void setClassYearEntity(ClassYearEntity classYearEntity) {
+  public void setClassYearId(Long classYearId) {
 
-    this.classYearEntity = classYearEntity;
+    this.classYearId = classYearId;
   }
 }

@@ -68,7 +68,6 @@ public class StudentServiceImpl implements StudentService {
 //    }
 //    }
     studentEntity = this.studentRepository.save(studentEntity);
-    System.out.println("Student id: "+studentEntity.getId());
     return StudentMapper.mapToETO(studentEntity);
   }
 

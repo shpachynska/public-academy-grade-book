@@ -4,7 +4,9 @@ public enum SubjectType {
 
   ENGLISH,
   BIOLOGY,
-  MATHEMATHICS
-  //TODO IMPLEMENT: add some more types
-
-}
+  MATHEMATHICS,
+  HISTORY,
+  CHEMISTRY,
+  PHYSICS,
+  MUSIC;
+  }

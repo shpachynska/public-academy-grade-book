@@ -1,12 +1,16 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Formula;
 
@@ -23,9 +27,13 @@ public class SubjectEntity extends AbstractEntity {
   private SubjectType subjectType;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "TeacherId")
+  @NotNull
   private TeacherEntity teacherEntity;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "ClassYearId")
+  @NotNull
   private ClassYearEntity classYearEntity;
 
   /**

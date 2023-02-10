@@ -26,8 +26,6 @@ public final class StudentMapper {
     return student;
   }
 
-  //
-
   public static final StudentEntity mapToEntity(StudentEto studentTo){
 
     StudentEntity entity = new StudentEntity();

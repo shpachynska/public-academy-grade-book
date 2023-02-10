@@ -22,7 +22,8 @@ import com.capgemini.gradebook.service.StudentService;
 public class StudentRestController {
   private final StudentService studentService;
 
-  @Autowired StudentRestController(final StudentService studentService) {
+  @Autowired
+  public StudentRestController(final StudentService studentService) {
     this.studentService = studentService;
   }
 
@@ -53,7 +54,4 @@ public class StudentRestController {
   void deleteStudent(@PathVariable Long id) {
     studentService.delete(id);
   }
-
-
-
 }
