@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.gradebook.domain.SubjectEto;
-import com.capgemini.gradebook.persistence.entity.SubjectEntity;
 import com.capgemini.gradebook.service.SubjectService;
 
 @RestController

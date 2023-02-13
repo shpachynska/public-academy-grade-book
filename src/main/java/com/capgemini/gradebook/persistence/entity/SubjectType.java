@@ -4,7 +4,7 @@ public enum SubjectType {
 
   ENGLISH,
   BIOLOGY,
-  MATHEMATHICS,
+  MATHEMATICS,
   HISTORY,
   CHEMISTRY,
   PHYSICS,

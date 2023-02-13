@@ -6,15 +6,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.capgemini.gradebook.persistence.entity.GradeType;
-import com.capgemini.gradebook.persistence.entity.StudentEntity;
-import com.capgemini.gradebook.persistence.entity.SubjectEntity;
-import com.capgemini.gradebook.persistence.entity.TeacherEntity;
 
 public class GradeEto extends AbstractEto {
 
-  private TeacherEntity teacherEntity;
-  private SubjectEntity subjectEntity;
-  private StudentEntity studentEntity;
+  private Long teacherId;
+  private Long subjectId;
+  private Long studentId;
   private Integer value;
   private Integer weight;
 
@@ -25,51 +22,51 @@ public class GradeEto extends AbstractEto {
   private Date dateOfGrade;
 
   /**
-   * @return teacherEntity
+   * @return teacherId
    */
-  public TeacherEntity getTeacherEntity() {
+  public Long getTeacherId() {
 
-    return this.teacherEntity;
+    return this.teacherId;
   }
 
   /**
-   * @param teacherEntity the new value.
+   * @param teacherId the new value.
    */
-  public void setTeacherEntity(TeacherEntity teacherEntity) {
+  public void setTeacherId(Long teacherId) {
 
-    this.teacherEntity = teacherEntity;
+    this.teacherId = teacherId;
   }
 
   /**
-   * @return subjectEntity
+   * @return subjectId
    */
-  public SubjectEntity getSubjectEntity() {
+  public Long getSubjectId() {
 
-    return this.subjectEntity;
+    return this.subjectId;
   }
 
   /**
-   * @param subjectEntity the new value.
+   * @param subjectId the new value.
    */
-  public void setSubjectEntity(SubjectEntity subjectEntity) {
+  public void setSubjectId(Long subjectId) {
 
-    this.subjectEntity = subjectEntity;
+    this.subjectId = subjectId;
   }
 
   /**
-   * @return studentEntity
+   * @return studentId
    */
-  public StudentEntity getStudentEntity() {
+  public Long getStudentId() {
 
-    return this.studentEntity;
+    return this.studentId;
   }
 
   /**
-   * @param studentEntity the new value.
+   * @param studentId the new value.
    */
-  public void setStudentEntity(StudentEntity studentEntity) {
+  public void setStudentId(Long studentId) {
 
-    this.studentEntity = studentEntity;
+    this.studentId = studentId;
   }
 
   /**

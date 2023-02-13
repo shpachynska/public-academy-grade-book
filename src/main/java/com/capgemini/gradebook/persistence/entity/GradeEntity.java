@@ -6,20 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "GRADE")
 public class GradeEntity extends AbstractEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "TeaherId")
   private TeacherEntity teacherEntity;
 
+  @NotNull
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "SubjectId")
   private SubjectEntity subjectEntity;
 
+  @NotNull
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "StudentId")
   private StudentEntity studentEntity;
 
   private Integer value;
