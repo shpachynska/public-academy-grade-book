@@ -2,6 +2,7 @@ package com.capgemini.gradebook.persistence.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class SubjectEntity extends AbstractEntity {
 
   //TODO IMPLEMENT: no implementing here, but google why its better to persist enum values in the database in form of
   // strings or converted value instead of ordinal
+  @Column(length = 64)
   @Enumerated(EnumType.STRING)
   private SubjectType subjectType;
 

@@ -2,22 +2,28 @@ package com.capgemini.gradebook.persistence.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CLASS_YEAR")
 public class ClassYearEntity extends AbstractEntity {
 
- @OneToMany(mappedBy = "classYearEntity")
+  @OneToMany(mappedBy = "classYearEntity")
   private List<StudentEntity> studentEntities;
 
+  @NotNull
   private Number classLevel;
+
+  @NotNull
+  @Column(length = 2)
   private String className;
+
+  @NotNull
+  @Column(length = 16)
   private String classYear;
 
   /**

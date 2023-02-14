@@ -2,6 +2,7 @@ package com.capgemini.gradebook.persistence.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -11,7 +12,10 @@ import javax.persistence.Table;
 @Table(name = "TEACHER")
 public class TeacherEntity extends AbstractEntity {
 
+  @Column(length = 64)
   private String firstName;
+
+  @Column(length = 64)
   private String lastName;
 
    //TODO IMPLEMENT: after creating subjectEntity and other subject classes uncomment the lines below, making necessary

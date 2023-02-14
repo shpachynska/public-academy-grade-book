@@ -13,7 +13,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "STUDENT")
 public class StudentEntity extends AbstractEntity {
 
+  @Column(length = 64)
   private String lastName;
+
+  @Column(length = 64)
   private String firstName;
   private Integer age;
 

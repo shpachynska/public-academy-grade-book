@@ -2,6 +2,7 @@ package com.capgemini.gradebook.persistence.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,13 +30,19 @@ public class GradeEntity extends AbstractEntity {
   @JoinColumn(name = "StudentId")
   private StudentEntity studentEntity;
 
+  @NotNull
   private Integer value;
+
+  @NotNull
   private Integer weight;
 
+  @Column(length = 64)
   @Enumerated(EnumType.STRING)
   private GradeType gradeType;
 
   private String comment;
+
+  @NotNull
   private Date dateOfGrade;
 
   /**
