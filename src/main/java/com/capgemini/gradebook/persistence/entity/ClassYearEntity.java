@@ -15,6 +15,9 @@ public class ClassYearEntity extends AbstractEntity {
   @OneToMany(mappedBy = "classYearEntity")
   private List<StudentEntity> studentEntities;
 
+  @OneToMany(mappedBy = "classYearEntity")
+  private List<SubjectEntity> subjectEntities;
+
   @NotNull
   private Number classLevel;
 
@@ -29,7 +32,7 @@ public class ClassYearEntity extends AbstractEntity {
   /**
    * @return students
    */
-  public List<StudentEntity> getStudents() {
+  public List<StudentEntity> getStudentEntities() {
 
     return this.studentEntities;
   }
@@ -37,9 +40,25 @@ public class ClassYearEntity extends AbstractEntity {
   /**
    * @param studentEntities the new value.
    */
-  public void setStudents(List<StudentEntity> studentEntities) {
+  public void setStudentEntities(List<StudentEntity> studentEntities) {
 
     this.studentEntities = studentEntities;
+  }
+
+  /**
+   * @return subjectEntities
+   */
+  public List<SubjectEntity> getSubjectEntities() {
+
+    return this.subjectEntities;
+  }
+
+  /**
+   * @param subjectEntities the new value.
+   */
+  public void setSubjectEntities(List<SubjectEntity> subjectEntities) {
+
+    this.subjectEntities = subjectEntities;
   }
 
   /**

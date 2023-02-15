@@ -1,10 +1,13 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -25,6 +28,9 @@ public class StudentEntity extends AbstractEntity {
   @NotNull
   private ClassYearEntity classYearEntity;
 
+  @OneToMany(mappedBy = "studentEntity", fetch = FetchType.LAZY)
+  private List<GradeEntity> gradeEntities;
+
    /**
    * @return classYearEntity
    */
@@ -41,7 +47,23 @@ public class StudentEntity extends AbstractEntity {
     this.classYearEntity = classYearEntity;
   }
 
-   /**
+  /**
+   * @return gradeEntities
+   */
+  public List<GradeEntity> getGradeEntities() {
+
+    return this.gradeEntities;
+  }
+
+  /**
+   * @param gradeEntities the new value.
+   */
+  public void setGradeEntities(List<GradeEntity> gradeEntities) {
+
+    this.gradeEntities = gradeEntities;
+  }
+
+  /**
    * @return lastName
    */
   public String getLastName() {

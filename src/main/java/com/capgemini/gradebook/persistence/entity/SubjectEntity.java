@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -37,6 +38,9 @@ public class SubjectEntity extends AbstractEntity {
   @JoinColumn(name = "ClassYearId")
   @NotNull
   private ClassYearEntity classYearEntity;
+
+  @OneToMany(mappedBy = "subjectEntity", fetch = FetchType.LAZY)
+  private List<GradeEntity> gradeEntities;
 
   /**
    * @return name
@@ -100,5 +104,21 @@ public class SubjectEntity extends AbstractEntity {
   public void setClassYearEntity(ClassYearEntity classYearEntity) {
 
     this.classYearEntity = classYearEntity;
+  }
+
+  /**
+   * @return gradeEntities
+   */
+  public List<GradeEntity> getGradeEntities() {
+
+    return this.gradeEntities;
+  }
+
+  /**
+   * @param gradeEntities the new value.
+   */
+  public void setGradeEntities(List<GradeEntity> gradeEntities) {
+
+    this.gradeEntities = gradeEntities;
   }
 }
