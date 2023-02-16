@@ -56,6 +56,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     subjectEntity.setTeacherEntity(teacherEntity.get());
     subjectEntity.setClassYearEntity(classYearEntity.get());
+    newSubject.setName(subjectEntity.getSubjectType().toString().concat("_" + subjectEntity.getClassYearEntity().getClassYear()));
 
     subjectEntity = this.subjectRepository.save(subjectEntity);
     return SubjectMapper.mapToETO(subjectEntity);
