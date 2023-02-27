@@ -39,4 +39,30 @@ public class TeacherEto extends AbstractEto {
 
     this.lastName = lastName;
   }
+
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof TeacherEto)) {
+      return false;
+    }
+
+    TeacherEto that = (TeacherEto) o;
+
+    if (!this.firstName.equals(that.firstName)) {
+      return false;
+    }
+    return this.lastName.equals(that.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+
+    int result = this.firstName.hashCode();
+    result = 31 * result + this.lastName.hashCode();
+    return result;
+  }
 }
