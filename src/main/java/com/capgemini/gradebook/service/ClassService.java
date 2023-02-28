@@ -10,6 +10,8 @@ public interface ClassService {
 
   ClassEto save(ClassEto newClass);
 
+  ClassEto updateClassYear(ClassEto classEto, Long id);
+
   ClassEto findClassById(Long id);
 
   void delete(Long id);

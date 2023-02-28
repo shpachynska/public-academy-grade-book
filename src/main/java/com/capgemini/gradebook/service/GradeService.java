@@ -12,5 +12,7 @@ public interface GradeService {
 
   GradeEto save(GradeEto newGrade);
 
+  GradeEto updateGrade(GradeEto gradeEto, Long id);
+
   void delete(Long id);
 }

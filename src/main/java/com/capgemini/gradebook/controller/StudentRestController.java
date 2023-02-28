@@ -46,8 +46,8 @@ public class StudentRestController {
   }
 
   @PutMapping("/students/{id}")
-  StudentEto upsertStudent(@RequestBody StudentEto student) {
-    return studentService.save(student);
+  public void upsertStudent(@RequestBody StudentEto student, @PathVariable Long id) {
+    studentService.updateStudent(student, id);
   }
 
   @DeleteMapping("/students/{id}")

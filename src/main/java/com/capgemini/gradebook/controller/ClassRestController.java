@@ -38,8 +38,8 @@ public class ClassRestController {
   @GetMapping("/classes/{id}")
   public ResponseEntity<ClassEto> findClassById(@PathVariable("id") final Long id) {
 
-    final ClassEto classGroup = this.classService.findClassById(id);
-    return ResponseEntity.ok().body(classGroup);
+    final ClassEto classYear = this.classService.findClassById(id);
+    return ResponseEntity.ok().body(classYear);
   }
 
   @PostMapping("/classes")
@@ -51,8 +51,8 @@ public class ClassRestController {
   }
 
   @PutMapping("/classes/{id}")
-  ClassEto upsertGroup(@RequestBody ClassEto classGroup) {
-    return classService.save(classGroup);
+  ClassEto upsertGroup(@RequestBody ClassEto classYear, @PathVariable Long id) {
+    return classService.updateClassYear(classYear, id);
   }
 
   @DeleteMapping("/classes/{id}")

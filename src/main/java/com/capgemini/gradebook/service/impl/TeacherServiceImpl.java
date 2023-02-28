@@ -83,7 +83,7 @@ public class TeacherServiceImpl implements TeacherService {
   @Override
   public void delete(Long id) {
     if(!teacherRepository.existsById(id)) {
-      throw new NotFoundException("Teacher with id " + id + " does not exists");
+      throw new NotFoundException("Teacher with id " + id + " does not exist");
     }
 
     this.teacherRepository.deleteById(id);

@@ -42,12 +42,14 @@ public class SubjectRestController {
 
   @PostMapping("/subjects")
   public SubjectEto addSubject(@RequestBody SubjectEto newSubject) {
+
     return subjectService.save(newSubject);
   }
 
   @PutMapping("/subjects/{id}")
-  SubjectEto upsertSubject(@RequestBody SubjectEto subject) {
-    return subjectService.save(subject);
+  public void upsertSubject(@RequestBody SubjectEto subject, @PathVariable Long id) {
+
+    subjectService.updateSubject(subject, id);
   }
 
   @DeleteMapping("/subjects/{id}")

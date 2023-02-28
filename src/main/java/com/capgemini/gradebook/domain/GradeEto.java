@@ -148,4 +148,54 @@ public class GradeEto extends AbstractEto {
 
     this.dateOfGrade = dateOfGrade;
   }
+
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof GradeEto)) {
+      return false;
+    }
+
+    GradeEto gradeEto = (GradeEto) o;
+
+    if (this.teacherId != null ? !this.teacherId.equals(gradeEto.teacherId) : gradeEto.teacherId != null) {
+      return false;
+    }
+    if (this.subjectId != null ? !this.subjectId.equals(gradeEto.subjectId) : gradeEto.subjectId != null) {
+      return false;
+    }
+    if (this.studentId != null ? !this.studentId.equals(gradeEto.studentId) : gradeEto.studentId != null) {
+      return false;
+    }
+    if (this.value != null ? !this.value.equals(gradeEto.value) : gradeEto.value != null) {
+      return false;
+    }
+    if (this.weight != null ? !this.weight.equals(gradeEto.weight) : gradeEto.weight != null) {
+      return false;
+    }
+    if (this.gradeType != gradeEto.gradeType) {
+      return false;
+    }
+    if (this.comment != null ? !this.comment.equals(gradeEto.comment) : gradeEto.comment != null) {
+      return false;
+    }
+    return this.dateOfGrade != null ? this.dateOfGrade.equals(gradeEto.dateOfGrade) : gradeEto.dateOfGrade == null;
+  }
+
+  @Override
+  public int hashCode() {
+
+    int result = this.teacherId != null ? this.teacherId.hashCode() : 0;
+    result = 31 * result + (this.subjectId != null ? this.subjectId.hashCode() : 0);
+    result = 31 * result + (this.studentId != null ? this.studentId.hashCode() : 0);
+    result = 31 * result + (this.value != null ? this.value.hashCode() : 0);
+    result = 31 * result + (this.weight != null ? this.weight.hashCode() : 0);
+    result = 31 * result + (this.gradeType != null ? this.gradeType.hashCode() : 0);
+    result = 31 * result + (this.comment != null ? this.comment.hashCode() : 0);
+    result = 31 * result + (this.dateOfGrade != null ? this.dateOfGrade.hashCode() : 0);
+    return result;
+  }
 }

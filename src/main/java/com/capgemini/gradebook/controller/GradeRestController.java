@@ -45,7 +45,10 @@ public class GradeRestController {
   public GradeEto addGrade(@RequestBody GradeEto newGrade) { return gradeService.save(newGrade);}
 
   @PutMapping("/grades/{id}")
-  GradeEto upsertGrade(@RequestBody GradeEto grade) { return gradeService.save(grade);}
+  GradeEto upsertGrade(@RequestBody GradeEto grade, @PathVariable Long id) {
+
+    return gradeService.updateGrade(grade, id);
+  }
 
   @DeleteMapping("/grades/{id}")
   void deleteGrade(@PathVariable Long id) {gradeService.delete(id);}

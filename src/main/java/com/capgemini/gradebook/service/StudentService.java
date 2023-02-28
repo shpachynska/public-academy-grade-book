@@ -11,5 +11,7 @@ public interface StudentService {
 
   StudentEto save(StudentEto newStudent);
 
+  StudentEto updateStudent(StudentEto studentEto, Long id);
+
   void delete(Long id);
 }

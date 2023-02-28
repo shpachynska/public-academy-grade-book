@@ -79,4 +79,38 @@ public class SubjectEto extends AbstractEto {
 
     this.classYearId = classYearId;
   }
+
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SubjectEto)) {
+      return false;
+    }
+
+    SubjectEto that = (SubjectEto) o;
+
+    if (this.name != null ? !this.name.equals(that.name) : that.name != null) {
+      return false;
+    }
+    if (this.teacherId != null ? !this.teacherId.equals(that.teacherId) : that.teacherId != null) {
+      return false;
+    }
+    if (this.classYearId != null ? !this.classYearId.equals(that.classYearId) : that.classYearId != null) {
+      return false;
+    }
+    return this.subjectType == that.subjectType;
+  }
+
+  @Override
+  public int hashCode() {
+
+    int result = this.name != null ? this.name.hashCode() : 0;
+    result = 31 * result + (this.teacherId != null ? this.teacherId.hashCode() : 0);
+    result = 31 * result + (this.classYearId != null ? this.classYearId.hashCode() : 0);
+    result = 31 * result + (this.subjectType != null ? this.subjectType.hashCode() : 0);
+    return result;
+  }
 }

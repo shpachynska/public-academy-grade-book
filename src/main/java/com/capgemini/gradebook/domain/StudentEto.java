@@ -11,7 +11,7 @@ public class StudentEto extends AbstractEto {
 //  private List<Long> subjectList;
 
   /**
-   * @return classGroupId
+   * @return classYearId
    */
   public Long getClassYearId() {
 
@@ -72,5 +72,39 @@ public class StudentEto extends AbstractEto {
   public void setAge(Integer age) {
 
     this.age = age;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof StudentEto)) {
+      return false;
+    }
+
+    StudentEto that = (StudentEto) o;
+
+    if (this.lastName != null ? !this.lastName.equals(that.lastName) : that.lastName != null) {
+      return false;
+    }
+    if (this.firstName != null ? !this.firstName.equals(that.firstName) : that.firstName != null) {
+      return false;
+    }
+    if (this.age != null ? !this.age.equals(that.age) : that.age != null) {
+      return false;
+    }
+    return this.classYearId != null ? this.classYearId.equals(that.classYearId) : that.classYearId == null;
+  }
+
+  @Override
+  public int hashCode() {
+
+    int result = this.lastName != null ? this.lastName.hashCode() : 0;
+    result = 31 * result + (this.firstName != null ? this.firstName.hashCode() : 0);
+    result = 31 * result + (this.age != null ? this.age.hashCode() : 0);
+    result = 31 * result + (this.classYearId != null ? this.classYearId.hashCode() : 0);
+    return result;
   }
 }

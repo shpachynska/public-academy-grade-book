@@ -11,5 +11,7 @@ public interface SubjectService {
 
   SubjectEto save(SubjectEto newSubject);
 
+  SubjectEto updateSubject(SubjectEto subjectEto, Long id);
+
   void delete(Long id);
 }
