@@ -1,5 +1,6 @@
 package com.capgemini.gradebook.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -106,7 +107,7 @@ public class GradeServiceImpl implements GradeService {
   @Override
   public GradeEto updateGrade(GradeEto gradeEto, Long gradeId) {
     int gradeValue = gradeEto.getValue();
-    int gradeWeight = gradeEto.getWeight();
+    BigDecimal gradeWeight = gradeEto.getWeight();
     GradeType gradeType = gradeEto.getGradeType();
     String gradeComment = gradeEto.getComment();
     Date gradeDate = gradeEto.getDateOfGrade();
@@ -123,9 +124,9 @@ public class GradeServiceImpl implements GradeService {
       grade.setValue(gradeValue);
     }
 
-    if(gradeWeight > 0 && !Objects.equals(grade.getWeight(), gradeWeight)) {
-      grade.setWeight(gradeWeight);
-    }
+//    if(gradeWeight > 0 && !Objects.equals(grade.getWeight(), gradeWeight)) {
+//      grade.setWeight(gradeWeight);
+//    }
 
     if(gradeType != null && gradeType.toString().length() > 0 && !Objects.equals(grade.getGradeType(), gradeType)) {
       grade.setGradeType(gradeType);

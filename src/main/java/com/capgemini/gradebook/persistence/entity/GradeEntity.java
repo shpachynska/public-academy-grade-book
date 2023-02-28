@@ -1,5 +1,6 @@
 package com.capgemini.gradebook.persistence.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "GRADE")
@@ -31,10 +33,12 @@ public class GradeEntity extends AbstractEntity {
   private StudentEntity studentEntity;
 
   @NotNull
+  @Range(min = 1, max = 6)
   private Integer value;
 
   @NotNull
-  private Integer weight;
+  @Range(min = 0, max = 9)
+  private BigDecimal weight;
 
   @Column(length = 64)
   @Enumerated(EnumType.STRING)
@@ -112,7 +116,7 @@ public class GradeEntity extends AbstractEntity {
   /**
    * @return weight
    */
-  public Integer getWeight() {
+  public BigDecimal getWeight() {
 
     return this.weight;
   }
@@ -120,7 +124,7 @@ public class GradeEntity extends AbstractEntity {
   /**
    * @param weight the new value.
    */
-  public void setWeight(Integer weight) {
+  public void setWeight(BigDecimal weight) {
 
     this.weight = weight;
   }

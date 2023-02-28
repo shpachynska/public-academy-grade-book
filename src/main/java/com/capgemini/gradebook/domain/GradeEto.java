@@ -1,5 +1,6 @@
 package com.capgemini.gradebook.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.EnumType;
@@ -13,7 +14,7 @@ public class GradeEto extends AbstractEto {
   private Long subjectId;
   private Long studentId;
   private Integer value;
-  private Integer weight;
+  private BigDecimal weight = BigDecimal.valueOf(1.00);
 
   @Enumerated(EnumType.STRING)
   private GradeType gradeType;
@@ -88,7 +89,7 @@ public class GradeEto extends AbstractEto {
   /**
    * @return weight
    */
-  public Integer getWeight() {
+  public BigDecimal getWeight() {
 
     return this.weight;
   }
@@ -96,9 +97,9 @@ public class GradeEto extends AbstractEto {
   /**
    * @param weight the new value.
    */
-  public void setWeight(Integer weight) {
+  public void setWeight(BigDecimal weight) {
 
-    this.weight = weight;
+    this.weight = weight.setScale(2);
   }
 
   /**
