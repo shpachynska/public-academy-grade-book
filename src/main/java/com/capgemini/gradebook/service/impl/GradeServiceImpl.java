@@ -124,9 +124,9 @@ public class GradeServiceImpl implements GradeService {
       grade.setValue(gradeValue);
     }
 
-//    if(gradeWeight > 0 && !Objects.equals(grade.getWeight(), gradeWeight)) {
-//      grade.setWeight(gradeWeight);
-//    }
+    if(gradeWeight != null && !Objects.equals(grade.getWeight(), gradeWeight)) {
+      grade.setWeight(gradeWeight);
+    }
 
     if(gradeType != null && gradeType.toString().length() > 0 && !Objects.equals(grade.getGradeType(), gradeType)) {
       grade.setGradeType(gradeType);

@@ -1,6 +1,7 @@
 package com.capgemini.gradebook.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 
 import javax.persistence.EnumType;
@@ -99,7 +100,7 @@ public class GradeEto extends AbstractEto {
    */
   public void setWeight(BigDecimal weight) {
 
-    this.weight = weight.setScale(2);
+    this.weight = weight.setScale(2, RoundingMode.HALF_UP);
   }
 
   /**
