@@ -1,6 +1,7 @@
 package com.capgemini.gradebook.persistence.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class GradeEntity extends AbstractEntity {
   private String comment;
 
   @NotNull
-  private Date dateOfGrade;
+  private LocalDate dateOfGrade;
 
   /**
    * @return teacherEntity
@@ -164,7 +165,7 @@ public class GradeEntity extends AbstractEntity {
   /**
    * @return dateOfGrade
    */
-  public Date getDateOfGrade() {
+  public LocalDate getDateOfGrade() {
 
     return this.dateOfGrade;
   }
@@ -172,8 +173,10 @@ public class GradeEntity extends AbstractEntity {
   /**
    * @param dateOfGrade the new value.
    */
-  public void setDateOfGrade(Date dateOfGrade) {
+  public void setDateOfGrade(LocalDate dateOfGrade) {
 
     this.dateOfGrade = dateOfGrade;
   }
+
+
 }

@@ -90,33 +90,25 @@ public class SubjectServiceImpl implements SubjectService {
 
   @Override
   public SubjectEto updateSubject(SubjectEto subjectEto, Long subjectId) {
-    String subjectName = subjectEto.getName();
-    SubjectType subjectType = subjectEto.getSubjectType();
-    TeacherEntity teacher = teacherRepository.findById(subjectEto.getTeacherId()).get();
-    ClassYearEntity classYear = classYearRepository.findById(subjectEto.getClassYearId()).get();
 
-    SubjectEntity subject = this.subjectRepository.findById(subjectId).orElseThrow(() -> new IllegalStateException(
-        "Subject with" + " id " + subjectEto.getId() + " doesn't exist"));
-
-    if(subjectName != null && subjectName.length() > 0 && !Objects.equals(subject.getName(),
-        subjectName)) {
-      subject.setName(subjectName);
+    if(!subjectRepository.existsById(subjectId)) {
+      throw new NotFoundException("Subject with id " + subjectId + " doesn't exist");
     }
 
-    if(subjectType != null && subjectType.toString().length() > 0 && !Objects.equals(subject.getSubjectType(),
-        subjectType)) {
-      subject.setSubjectType(subjectType);
-    }
+    SubjectEntity existingSubject = subjectRepository.getOne(subjectId);
+    TeacherEntity teacher = teacherRepository.findById(subjectEto.getTeacherId())
+            .orElseThrow(() -> new NotFoundException("There is no such teacher in database"));
+    ClassYearEntity classYear = classYearRepository.findById(subjectEto.getClassYearId())
+            .orElseThrow(() -> new NotFoundException("There is no such class year in database"));
 
-    if(teacher != null && !Objects.equals(subject.getTeacherEntity(), teacher)) {
-      subject.setTeacherEntity(teacher);
-    }
+    subjectEto.setVersion(existingSubject.getVersion());
+    subjectEto.setId(subjectId);
 
-    if(classYear != null && !Objects.equals(subject.getClassYearEntity(), classYear)) {
-      subject.setClassYearEntity(classYear);
-    }
+    SubjectEntity subjectToUpdate = SubjectMapper.mapToEntity(subjectEto);
+    subjectToUpdate.setTeacherEntity(teacher);
+    subjectToUpdate.setClassYearEntity(classYear);
 
-    return SubjectMapper.mapToETO(subject);
+    return SubjectMapper.mapToETO(subjectRepository.save(subjectToUpdate));
   }
 
   @Override

@@ -63,29 +63,23 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   public TeacherEto updateTeacher(TeacherEto teacherEto, Long teacherId) {
-    String teacherFirstName = teacherEto.getFirstName();
-    String teacherLastName = teacherEto.getLastName();
-    TeacherEntity teacher =
-        this.teacherRepository.findById(teacherId).orElseThrow(() -> new IllegalStateException(
-        "Teacher with" +
-        " id " + teacherId + " doesn't exist"));
 
-    if(teacherFirstName != null && teacherFirstName.length() > 0 && !Objects.equals(teacher.getFirstName(), teacherFirstName)) {
-      teacher.setFirstName(teacherFirstName);
+    if (!teacherRepository.existsById(teacherId)) {
+      throw new NotFoundException("Teacher with id " + teacherId + " doesn't exist");
     }
+    TeacherEntity existingEntity = teacherRepository.findById(teacherId).get();
+    teacherEto.setVersion(existingEntity.getVersion());
+    teacherEto.setId(teacherId);
 
-    if(teacherLastName != null && teacherLastName.length() > 0 && !Objects.equals(teacher.getLastName(), teacherLastName)) {
-      teacher.setLastName(teacherLastName);
-    }
-    return TeacherMapper.mapToETO(teacher);
-  }
+    TeacherEntity teacherToUpdate = TeacherMapper.mapToEntity(teacherEto);
+
+    return TeacherMapper.mapToETO(teacherRepository.save(teacherToUpdate));  }
 
   @Override
   public void delete(Long id) {
     if(!teacherRepository.existsById(id)) {
       throw new NotFoundException("Teacher with id " + id + " does not exist");
     }
-
     this.teacherRepository.deleteById(id);
   }
 }

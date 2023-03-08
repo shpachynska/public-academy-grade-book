@@ -70,33 +70,22 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public StudentEto updateStudent(StudentEto studentEto, Long studentId) {
-    String studentFirstName = studentEto.getFirstName();
-    String studentLastName = studentEto.getLastName();
-    int studentAge = studentEto.getAge();
-    ClassYearEntity classYear = classYearRepository.findById(studentEto.getClassYearId()).get();
 
-    StudentEntity student =
-        this.studentRepository.findById(studentId).orElseThrow(() -> new IllegalStateException(
-            "Student with id " + studentEto.getId() + " doesn't exist"));
-
-    if(studentFirstName != null && studentFirstName.length() > 0 && !Objects.equals(student.getFirstName(),
-        studentFirstName)) {
-      student.setFirstName(studentFirstName);
+    if (!studentRepository.existsById(studentId)) {
+      throw new NotFoundException("Student with id " + studentId + " doesn't exist");
     }
 
-    if(studentLastName != null && studentLastName.length() > 0 && !Objects.equals(student.getLastName(),
-        studentLastName)) {
-      student.setLastName(studentLastName);
-    }
+    StudentEntity existingStudent = studentRepository.getOne(studentId);
+    ClassYearEntity classYear = classYearRepository.findById(studentEto.getClassYearId())
+            .orElseThrow(() -> new NotFoundException("There is no such class year in database"));
 
-    if(studentAge > 0 && !Objects.equals(student.getAge(), studentAge)) {
-      student.setAge(studentAge);
-    }
+    studentEto.setVersion(existingStudent.getVersion());
+    studentEto.setId(studentId);
 
-    if(classYear != null && !Objects.equals(student.getClassYearEntity(), classYear)) {
-      student.setClassYearEntity(classYear);
-    }
-    return StudentMapper.mapToETO(student);
+    StudentEntity studentToUpdate = StudentMapper.mapToEntity(studentEto);
+    studentToUpdate.setClassYearEntity(classYear);
+
+    return StudentMapper.mapToETO(studentRepository.save(studentToUpdate));
   }
 
   @Override

@@ -106,53 +106,32 @@ public class GradeServiceImpl implements GradeService {
 
   @Override
   public GradeEto updateGrade(GradeEto gradeEto, Long gradeId) {
-    int gradeValue = gradeEto.getValue();
-    BigDecimal gradeWeight = gradeEto.getWeight();
-    GradeType gradeType = gradeEto.getGradeType();
-    String gradeComment = gradeEto.getComment();
-    Date gradeDate = gradeEto.getDateOfGrade();
 
-    TeacherEntity teacher = teacherRepository.findById(gradeEto.getTeacherId()).get();
-    SubjectEntity subject = subjectRepository.findById(gradeEto.getSubjectId()).get();
-    StudentEntity student = studentRepository.findById(gradeEto.getStudentId()).get();
-
-    GradeEntity grade = this.gradeRepository.findById(gradeId).orElseThrow(() -> new IllegalStateException(
-        "Grade with id " + gradeEto.getId() + " doesn't exist"
-    ));
-
-    if(gradeValue > 0 && !Objects.equals(grade.getValue(), gradeValue)) {
-      grade.setValue(gradeValue);
+    if(!gradeRepository.existsById(gradeId)) {
+      throw new NotFoundException("Grade with id " + gradeId + " doesn't exist");
     }
 
-    if(gradeWeight != null && !Objects.equals(grade.getWeight(), gradeWeight)) {
-      grade.setWeight(gradeWeight);
+    GradeEntity existingGrade = gradeRepository.getOne(gradeId);
+    TeacherEntity teacher = teacherRepository.findById(gradeEto.getTeacherId())
+            .orElseThrow(() -> new NotFoundException("There is no such teacher in database"));
+    SubjectEntity subject = subjectRepository.findById(gradeEto.getSubjectId())
+            .orElseThrow(() -> new NotFoundException("There is no such subject in database"));
+    StudentEntity student = studentRepository.findById(gradeEto.getStudentId())
+            .orElseThrow(() -> new NotFoundException("There is no such student in database"));
+
+    if((gradeEto.getValue() == 1 || gradeEto.getValue() == 6) && gradeEto.getComment().isEmpty()) {
+      throw new BadRequestException("Grades 6 and 1 should be accompanied by the comment");
     }
 
-    if(gradeType != null && gradeType.toString().length() > 0 && !Objects.equals(grade.getGradeType(), gradeType)) {
-      grade.setGradeType(gradeType);
-    }
+    gradeEto.setVersion(existingGrade.getVersion());
+    gradeEto.setId(gradeId);
 
-    if(gradeComment != null && gradeComment.length() > 0 && !Objects.equals(grade.getComment(), gradeComment)) {
-      grade.setComment(gradeComment);
-    }
+    GradeEntity gradeToUpdate = GradeMapper.mapToEntity(gradeEto);
+    gradeToUpdate.setTeacherEntity(teacher);
+    gradeToUpdate.setStudentEntity(student);
+    gradeToUpdate.setSubjectEntity(subject);
 
-    if (gradeDate != null && !Objects.equals(grade.getDateOfGrade(), gradeDate)) {
-      grade.setDateOfGrade(gradeDate);
-    }
-
-    if(teacher != null && !Objects.equals(grade.getTeacherEntity(), teacher)) {
-      grade.setTeacherEntity(teacher);
-    }
-
-    if(subject != null && !Objects.equals(grade.getSubjectEntity(), subject)) {
-      grade.setSubjectEntity(subject);
-    }
-
-    if(student != null && !Objects.equals(grade.getStudentEntity(), student)) {
-      grade.setStudentEntity(student);
-    }
-
-    return GradeMapper.mapToETO(grade);
+    return GradeMapper.mapToETO(gradeRepository.save(gradeToUpdate));
   }
 
   @Override
@@ -161,5 +140,6 @@ public class GradeServiceImpl implements GradeService {
       throw new NotFoundException("Grade with id " + id + " does not exist");
     }
 
-    this.gradeRepository.deleteById(id);}
+    this.gradeRepository.deleteById(id);
+  }
 }

@@ -35,6 +35,13 @@ public class ClassServiceImpl implements ClassService {
   }
 
   @Override
+  public ClassEto findClassById(Long id) {
+
+    final Optional<ClassYearEntity> result = this.classRepository.findById(id);
+    return result.map(r -> ClassMapper.mapToETO(r)).orElseThrow( ()-> new NotFoundException("Class not found"));
+  }
+
+  @Override
   public ClassEto save(ClassEto newClass) {
 
     if (newClass.getId() != null) {
@@ -48,39 +55,18 @@ public class ClassServiceImpl implements ClassService {
 
   @Override
   public ClassEto updateClassYear(ClassEto classEto, Long classId) {
-    int classYearClassLevel = (int) classEto.getClassLevel();
-    String classYearClassName = classEto.getClassName();
-    String classYearClassYear = classEto.getClassYear();
 
-
-    ClassYearEntity classYear =
-        this.classRepository.findById(classId).orElseThrow(() -> new IllegalStateException(
-            "Class with" +
-                " id " + classId + " doesn't exist"));
-
-    if(classYearClassLevel > 0 && !Objects.equals(classYear.getClassYear(),
-        classYearClassLevel)) {
-      classYear.setClassLevel(classYearClassLevel);
+    if(!classRepository.existsById(classId)) {
+      throw new NotFoundException("Classyear with id " + classId + " doesn't exist");
     }
 
-    if(classYearClassName != null && classYearClassName.length() > 0 && !Objects.equals(classYear.getClassName(),
-        classYearClassName)) {
-      classYear.setClassName(classYearClassName);
-    }
+    ClassYearEntity existingClassYear = classRepository.findById(classId).get();
+    classEto.setVersion(existingClassYear.getVersion());
+    classEto.setId(classId);
 
-    if(classYearClassYear != null && classYearClassYear.length() > 0 && !Objects.equals(classYear.getClassYear(),
-        classYearClassYear)) {
-      classYear.setClassYear(classYearClassYear);
-    }
-    return ClassMapper.mapToETO(classYear);
-  }
+    ClassYearEntity classYearToUpdate = ClassMapper.mapToEntity(classEto);
 
-
-  @Override
-  public ClassEto findClassById(Long id) {
-
-    final Optional<ClassYearEntity> result = this.classRepository.findById(id);
-    return result.map(r -> ClassMapper.mapToETO(r)).orElseThrow( ()-> new NotFoundException("Class not found"));
+    return ClassMapper.mapToETO(classRepository.save(classYearToUpdate));
   }
 
   @Override

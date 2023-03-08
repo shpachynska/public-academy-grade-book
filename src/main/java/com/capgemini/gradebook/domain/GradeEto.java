@@ -2,6 +2,7 @@ package com.capgemini.gradebook.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.EnumType;
@@ -21,7 +22,7 @@ public class GradeEto extends AbstractEto {
   private GradeType gradeType;
 
   private String comment;
-  private Date dateOfGrade;
+  private LocalDate dateOfGrade;
 
   /**
    * @return teacherId
@@ -138,7 +139,7 @@ public class GradeEto extends AbstractEto {
   /**
    * @return dateOfGrade
    */
-  public Date getDateOfGrade() {
+  public LocalDate getDateOfGrade() {
 
     return this.dateOfGrade;
   }
@@ -146,7 +147,7 @@ public class GradeEto extends AbstractEto {
   /**
    * @param dateOfGrade the new value.
    */
-  public void setDateOfGrade(Date dateOfGrade) {
+  public void setDateOfGrade(LocalDate dateOfGrade) {
 
     this.dateOfGrade = dateOfGrade;
   }

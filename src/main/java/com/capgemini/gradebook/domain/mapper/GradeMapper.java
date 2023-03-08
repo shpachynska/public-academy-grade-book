@@ -7,8 +7,14 @@ import com.capgemini.gradebook.domain.GradeEto;
 import com.capgemini.gradebook.persistence.entity.GradeEntity;
 
 public final class GradeMapper {
+
   public static final GradeEto mapToETO(GradeEntity entity) {
+
     GradeEto grade = new GradeEto();
+    grade.setId(entity.getId());
+    grade.setVersion(entity.getVersion());
+    grade.setCreateDate(entity.getCreateDate());
+    grade.setUpdateDate(entity.getUpdateDate());
     grade.setValue(entity.getValue());
     grade.setWeight(entity.getWeight());
     grade.setGradeType(entity.getGradeType());

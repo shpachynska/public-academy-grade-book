@@ -19,7 +19,6 @@ public final class SubjectMapper {
     subject.setSubjectType(entity.getSubjectType());
     subject.setTeacherId(entity.getTeacherEntity().getId());
     subject.setClassYearId(entity.getClassYearEntity().getId());
-    subject.setClassYearId(entity.getClassYearEntity().getId());
     return subject;
   }
 

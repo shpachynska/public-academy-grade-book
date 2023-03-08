@@ -203,7 +203,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"firstName\": \"Jan\",\r\n    \"lastName\": \"Kowalski\"\r\n}"
+					"raw": "{\r\n    \"firstName\": \"Jan\",\r\n    \"lastName\": \"Kowalski\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/teachers/1",
@@ -234,7 +234,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"firstName\": \"Peter\",\r\n    \"lastName\": \"Parker\",\r\n    \"age\": 15,\r\n    \"classYearId\": 1\r\n}"
+					"raw": "{\r\n    \"firstName\": \"Peter\",\r\n    \"lastName\": \"Parker\",\r\n    \"age\": 15,\r\n    \"classYearId\": 1\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/students/1",
@@ -265,7 +265,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"classLevel\": 4,\n    \"className\": \"a\",\n    \"classYear\": \"as\"\r\n}"
+					"raw": "{\r\n    \"classLevel\": 4,\n    \"className\": \"a\",\n    \"classYear\": \"4a\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/classes/1",
@@ -296,7 +296,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"name\": \"History_3b\",\r\n    \"subjectType\": \"HISTORY\",\r\n    \"teacherId\": 1,\r\n    \"classYearId\": 1\r\n}"
+					"raw": "{\r\n    \"name\": \"History_3b\",\r\n    \"subjectType\": \"HISTORY\",\r\n    \"teacherId\": 1,\r\n    \"classYearId\": 1\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/subjects/1",
@@ -327,7 +327,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"version\":0,\r\n    \"value\": 6,\r\n    \"gradeType\": \"PRACA_NA_LEKCJI\",\r\n    \"weight\": 3,\r\n    \"comment\": \"Dodatkowe zadanie\",\r\n    \"teacherId\": 1,\r\n    \"subjectId\": 2,\r\n    \"studentId\": 1,\r\n    \"dateOfGrade\": \"2023-02-12\"\r\n}"
+					"raw": "{\r\n    \"value\": 6,\r\n    \"gradeType\": \"PRACA_NA_LEKCJI\",\r\n    \"weight\": 3,\r\n    \"comment\": \"Dodatkowe zadanie\",\r\n    \"teacherId\": 1,\r\n    \"subjectId\": 2,\r\n    \"studentId\": 1,\r\n    \"dateOfGrade\": \"2023-02-12\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/grades/1",
