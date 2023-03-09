@@ -1,9 +1,6 @@
 package com.capgemini.gradebook.service.impl;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.capgemini.gradebook.domain.GradeEto;
 import com.capgemini.gradebook.domain.mapper.GradeMapper;
 import com.capgemini.gradebook.persistence.entity.GradeEntity;
-import com.capgemini.gradebook.persistence.entity.GradeType;
 import com.capgemini.gradebook.persistence.entity.StudentEntity;
 import com.capgemini.gradebook.persistence.entity.SubjectEntity;
 import com.capgemini.gradebook.persistence.entity.TeacherEntity;
@@ -63,12 +59,14 @@ public class GradeServiceImpl implements GradeService {
     }
 
     GradeEntity gradeEntity = GradeMapper.mapToEntity(newGrade);
+
     if (newGrade.getTeacherId() == null) {
       throw new NotFoundException("Grade has no teacher id");
     } else {
       Optional<TeacherEntity> teacherEntity = this.teacherRepository.findById(newGrade.getTeacherId());
       if(teacherEntity.isPresent()) {
         gradeEntity.setTeacherEntity(teacherEntity.get());
+        System.out.println("teacher after teacher setting later after inititalization: " + gradeEntity.getTeacherEntity().getFirstName());
       } else {
         throw new NotFoundException("There is no teacher with such id in db");
       }
@@ -100,6 +98,10 @@ public class GradeServiceImpl implements GradeService {
       throw new BadRequestException("Grades 6 and 1 should be accompanied by the comment");
     }
 
+    if ((newGrade.getValue() > 1 && newGrade.getValue() < 6) && !newGrade.getComment().isEmpty()) {
+      gradeEntity.setComment("");
+    }
+
     gradeEntity = this.gradeRepository.save(gradeEntity);
     return GradeMapper.mapToETO(gradeEntity);
   }
@@ -127,9 +129,14 @@ public class GradeServiceImpl implements GradeService {
     gradeEto.setId(gradeId);
 
     GradeEntity gradeToUpdate = GradeMapper.mapToEntity(gradeEto);
+
     gradeToUpdate.setTeacherEntity(teacher);
     gradeToUpdate.setStudentEntity(student);
     gradeToUpdate.setSubjectEntity(subject);
+
+    if ((gradeEto.getValue() > 1 && gradeEto.getValue() < 6) && !gradeEto.getComment().isEmpty()) {
+      gradeToUpdate.setComment("");
+    }
 
     return GradeMapper.mapToETO(gradeRepository.save(gradeToUpdate));
   }

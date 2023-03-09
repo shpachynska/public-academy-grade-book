@@ -59,6 +59,8 @@ public class SubjectServiceImpl implements SubjectService {
       throw new BadRequestException("Subject with such id already exists");
     }
 
+    newSubject.setName(newSubject.getSubjectType().toString().concat("_" + classYearRepository.getOne(newSubject.getClassYearId()).getClassYear()));
+
     SubjectEntity subjectEntity = SubjectMapper.mapToEntity(newSubject);
     if (newSubject.getTeacherId() == null) {
       throw new NotFoundException("Subject has no teacher id");
@@ -81,8 +83,6 @@ public class SubjectServiceImpl implements SubjectService {
         throw new NotFoundException("There is no class year with such id in db");
       }
     }
-
-    newSubject.setName(subjectEntity.getSubjectType().toString().concat("_" + subjectEntity.getClassYearEntity().getClassYear()));
 
     subjectEntity = this.subjectRepository.save(subjectEntity);
     return SubjectMapper.mapToETO(subjectEntity);

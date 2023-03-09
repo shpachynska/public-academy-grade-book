@@ -129,7 +129,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \r\n    \"name\": \"History_3b\",\r\n    \"subjectType\": \"HISTORY\",\r\n    \"teacherId\": 1,\r\n    \"classYearId\": 1\r\n}"
+					"raw": "{\r\n    \r\n    \"subjectType\": \"HISTORY\",\r\n    \"teacherId\": 1,\r\n    \"classYearId\": 1\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8091/rest/subjects",
