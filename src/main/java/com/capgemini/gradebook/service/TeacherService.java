@@ -14,5 +14,7 @@ public interface TeacherService {
 
 	TeacherEto save(TeacherEto newTeacher);
 
+	TeacherEto updateTeacher(TeacherEto teacherEto, Long id);
+
 	void delete(Long id);
 }

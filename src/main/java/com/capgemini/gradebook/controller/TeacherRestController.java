@@ -61,11 +61,11 @@ public class TeacherRestController {
   }
 
   @PutMapping("/teachers/{id}")
-  TeacherEto upsertEmployee(@RequestBody TeacherEto teacher) {
+  public void upsertEmployee(@RequestBody TeacherEto teacher, @PathVariable Long id) {
 
     //dev note: you can ignore the lack of createdDate and updateDate on resulting object, it will exists in database
     //its just not "available" during the return by update; if you want, you can try to fix it
-    return teacherService.save(teacher);
+    teacherService.updateTeacher(teacher, id);
   }
 
   @DeleteMapping("/teachers/{id}")
